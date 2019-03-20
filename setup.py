@@ -7,8 +7,9 @@ Created on Wed Mar 20 11:48:36 2019
 
 from keras.datasets import mnist
 from keras.utils import np_utils 
-from config import num_classes,height, width , depth
+from config import num_classes
 
+height, width , depth = None,None,None
 
 
 def load_dataset():
@@ -25,9 +26,10 @@ def load_dataset():
     train_features/= 255 
     test_features /= 255 
 
-    train_labels = np_utils.to_categorical(train_labels, num_classes)
-    encoded_test_labels = np_utils.to_categorical(test_labels, num_classes)
+    train_labels = np_utils.to_categorical(train_labels, num_classes).astype('float32')
+    encoded_test_labels = np_utils.to_categorical(test_labels, num_classes).astype('float32')
     
     return ((train_features,train_labels),(test_features,test_labels),encoded_test_labels)
 
-
+def get_image_dimensions():
+    return height, width , depth
