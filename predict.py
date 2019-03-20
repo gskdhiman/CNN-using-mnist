@@ -12,7 +12,6 @@ import numpy as np
 from sklearn.metrics import confusion_matrix #,cohen_kappa_score
 import seaborn as sns
 
-
 def predictions(model_path,test_features,test_labels):
     model = load_model(model_path)
     predictions = model.predict(test_features)

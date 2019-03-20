@@ -9,18 +9,20 @@ from config import filters1,filters2,dropout_prob,hidden_size,num_classes,tensor
 from model import model_design
 from train import train_model,evalute_model
 from predict import predictions,show_heatmap,show_plot
-    
+
+want_to_train = True    
 
 if __name__ =='__main__':
     (train_features,train_labels),(test_features,test_labels),encoded_test_labels= load_dataset()
     height,width,depth = get_image_dimensions()
-
-    model = model_design(height=height,width= width,depth=depth,filters1=filters1,
+    
+    if want_to_train:
+        model = model_design(height=height,width= width,depth=depth,filters1=filters1,
                          dropout_prob=dropout_prob,filters2=filters2,hidden_size=hidden_size,
                          num_classes=num_classes,tensorboard_dir=tensorboard_dir)
 
-    model_data = train_model(model,train_features,train_labels,batch_size,num_epochs,tensorboard_dir)
-    
+        model_data = train_model(model,model_path,train_features,train_labels,batch_size,num_epochs,tensorboard_dir)    
+        
     evalute_model(model,model_path,test_features,encoded_test_labels)
 
     c_matrix,Wrong_digits_idx,out_df = predictions(model_path,test_features,test_labels)
