@@ -24,5 +24,7 @@ You can have a look at this script first and then go into individual scripts.
 
 The model will be stored in the current directory.
 
-The sample code is able to achieve 99.18 accuracy without much effort and can be further improved.
+The sample code is able to achieve 99.18 accuracy without much effort and can be further improved.<br>
+The sample model is also given (mnist.h5) to try without training. (Requires some coding changes in main file only).
+
 </em>
