@@ -8,7 +8,7 @@ import os
 from keras.models import Model
 from keras.layers import Input, Dense 
 from keras.layers import Conv2D, MaxPooling2D,Flatten,Dropout
-from keras.callbacks import TensorBoard
+
     
 
 def model_design(height,width,depth,filters1,
@@ -34,11 +34,5 @@ def model_design(height,width,depth,filters1,
     model.compile(loss='categorical_crossentropy', 
               optimizer='nadam', 
               metrics=['accuracy']) 
-    tensorboard = TensorBoard(log_dir=os.path.join(tensorboard_dir,'logs'),
-                          histogram_freq=1,
-                          write_graph=True)
     model.summary()
-    model_data = model.fit(train_features, train_labels, 
-                           batch_size=batch_size, epochs=num_epochs,
-                           verbose=1,callbacks = [tensorboard],validation_split = 0.1) 
-    return model,model_data,tensorboard
+    return model

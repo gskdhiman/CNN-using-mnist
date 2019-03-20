@@ -15,12 +15,11 @@ if __name__ =='__main__':
     (train_features,train_labels),(test_features,test_labels),encoded_test_labels= load_dataset()
     height,width,depth = get_image_dimensions()
 
-    model,tensorboard = model_design(height=height,width= width,depth=depth,filters1=filters1,
-                                 dropout_prob=dropout_prob,filters2=filters2,hidden_size=hidden_size,
-                                 num_classes=num_classes,tensorboard_dir=tensorboard_dir)
+    model = model_design(height=height,width= width,depth=depth,filters1=filters1,
+                         dropout_prob=dropout_prob,filters2=filters2,hidden_size=hidden_size,
+                         num_classes=num_classes,tensorboard_dir=tensorboard_dir)
 
-
-    model_data = train_model(model,train_features,train_labels,batch_size,num_epochs,tensorboard)
+    model_data = train_model(model,train_features,train_labels,batch_size,num_epochs,tensorboard_dir)
     
     evalute_model(model,model_path,test_features,encoded_test_labels)
 
