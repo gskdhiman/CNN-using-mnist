@@ -23,4 +23,3 @@ output = os.path.join(os.getcwd(),'output')
 
 if not os.path.exists(output):
     os.makedirs(output)
-

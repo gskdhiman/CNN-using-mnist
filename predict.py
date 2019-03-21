@@ -37,16 +37,18 @@ def show_heatmap(c_matrix):
 
 def save_plot(Wrong_digits_idx,out_df,test_features):
     plt.ioff()
+    plt.rcParams['font.size'] = 6
     i = 1
     while True:
-        idx_list = Wrong_digits_idx[9*i:9*(i+1)]
+        idx_list = Wrong_digits_idx[16*i:16*(i+1)]
          
         if len(idx_list)==0:
             break
         fig = plt.figure()
-        fig.suptitle("Actual(A) vs Predicted(P)", fontsize=16)
+        fig.suptitle("Actual(A) vs Predicted(P)", fontsize=7)
         for idx,idx_value in enumerate(idx_list):
-            plt.subplot(3,3,idx+1)
+            plt.subplot(4,4,idx+1)
+            
             plt.imshow(test_features[idx_value].reshape(28,28), cmap='gray', interpolation='none')
             digits_compare = out_df.iloc[idx_value].tolist()
             plt.title('A:'+str(digits_compare[0])+ ' but ' +'P:'+str(digits_compare[1]))

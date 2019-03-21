@@ -28,15 +28,20 @@ if __name__ =='__main__':
 
         model_data = train_model(model,model_path,train_features,train_labels,batch_size,
                                  num_epochs,tensorboard_dir)    
-        
+    
+    #evaluate the saved model    
     evalute_model(model_path,test_features,encoded_test_labels)
-
+    
+    #get the confusion matrix and incorrectly predicted images index and the dataframe containing all this info
     c_matrix,Wrong_digits_idx,out_df = predictions(model_path,test_features,test_labels)
     
+    # see the result in a heatmap
     show_heatmap(c_matrix)
     
+    # save the misclassified images 4*4 subplots in the output(see config.py) folder
     save_plot(Wrong_digits_idx,out_df,test_features)
     
+    #It will show you the loss and accuracy plots
     show_acc_loss_plot(model_data)
     
 
