@@ -7,7 +7,7 @@
 * Separate scripts of setup, model design, train and predict.
 * Tensorboard to monitor loss.
 * Intuitive way to understand the false postives.
-* Heatmap for cunfusion matrix.
+* Heatmap for confusion matrix.
 * Neat and clean (WIP).
 
 
