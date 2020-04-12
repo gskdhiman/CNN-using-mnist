@@ -12,7 +12,7 @@
 
 
 ## How to run:
-<b>Installtion of libraries</b> 
+<b>Installation of necessary libraries</b> 
 
 `pip install -r requirements.txt`
 
@@ -31,4 +31,10 @@ The sample model is also given (mnist.h5) to try without training. (toggle the f
 
 The heatmap will show confusion matrix to see the output in a better form.<br>
 The output folder will contain the misclassified images.
+
+## Use this for API
+
+* look into the prediction_utility.py module
 </em>
+
+
