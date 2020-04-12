@@ -12,10 +12,10 @@
 
 
 ## How to run:
-<b>Note:</b> assuming you have the necessary libraries(python, pandas, numpy, keras, sklearn and etc.
-* open cmd
-* Go into the project directory 
-* Run the following command
+<b>Installtion of libraries</b> 
+
+`pip install -r requirements.txt`
+
 
 `python main.py`
 
