@@ -10,7 +10,7 @@ from model import model_design
 from train import train_model,evalute_model
 from predict import predictions,show_heatmap,save_plot,show_acc_loss_plot
 
-want_to_train = True    
+want_to_train = False    
 
 if __name__ =='__main__':
     # load the training set into train_features,train_labels and test set into test_features,encoded_test_labels
@@ -30,7 +30,7 @@ if __name__ =='__main__':
                                  num_epochs,tensorboard_dir)    
     
     #evaluate the saved model    
-    evalute_model(model_path,test_features,encoded_test_labels)
+    model_data = evalute_model(model_path,test_features,encoded_test_labels)
     
     #get the confusion matrix and incorrectly predicted images index and the dataframe containing all this info
     c_matrix,Wrong_digits_idx,out_df = predictions(model_path,test_features,test_labels)
@@ -42,6 +42,7 @@ if __name__ =='__main__':
     save_plot(Wrong_digits_idx,out_df,test_features)
     
     #It will show you the loss and accuracy plots
-    show_acc_loss_plot(model_data)
+    if want_to_train:
+        show_acc_loss_plot(model_data)
     
 
