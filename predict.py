@@ -14,6 +14,7 @@ import seaborn as sns
 import keyboard
 import os
 from config import output
+from PIL import Image
 
 def predictions(model_path,test_features,test_labels):
     model = load_model(model_path)
@@ -28,6 +29,42 @@ def predictions(model_path,test_features,test_labels):
     c_matrix = confusion_matrix(actual_labels,predicted_digits)
     return(c_matrix,Wrong_digits_idx,out_df)
 
+def unlabelled_predictions(model_path: str,list_image_path: list)-> list:
+    '''
+    Parameters
+    ----------
+    model_path : h5
+        The path for the trained model and as of now it is given in the project 
+        as model.h5 file
+    image_path : jpg.jpeg
+        The list of relative path of the image which you want to predict.
+    Returns
+    -------
+    predicted_digit : str 
+        returns the digit number which the image contains but in str format so that this functionality can
+        be used later for some project.
+    '''
+    ## no need already type checking
+    if isinstance(list_image_path,str):
+         list_image_path = [list_image_path]       
+    # image_path = 'images\img_49.jpg'
+    try:
+        model = load_model(model_path)
+    except FileNotFoundError:
+        print('The path given for the model is not correct')
+    predicted_digits = []
+    for image_path in list_image_path:
+        # Open the image form the given path 
+        image = Image.open(image_path)
+        image = np.array(image)
+        ## add the channel dim 
+        ## before 28,28 now 28,28,1
+        image = np.expand_dims(image,2)
+        ## add the batch dim
+        ## before (28,28,1) after (1,28,28,1)
+        image = np.expand_dims(image,0)
+        predicted_digits.append(str(np.argmax(model.predict(image))))
+    return predicted_digits
 
 def show_heatmap(c_matrix):
     sns.heatmap(c_matrix.T,annot = True,fmt = 'd',cbar = True)

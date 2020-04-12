@@ -16,7 +16,7 @@ num_classes = 10
 batch_size = 256
 num_epochs = 20
 
-model_path = os.path.join(os.getcwd(),'mnist_new.h5')
+model_path = os.path.join(os.getcwd(),'mnist.h5')
 tensorboard_dir = os.getcwd()
 
 output = os.path.join(os.getcwd(),'output')
